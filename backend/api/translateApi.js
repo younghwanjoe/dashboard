@@ -1,3 +1,4 @@
+require('dotenv').config()
 var express = require('express');
 var router = express.Router();
 
@@ -5,7 +6,11 @@ const {Translate} = require(
     '@google-cloud/translate'
 ).v2;
 // Project id from config.json
-const config = require('../.google-cloud-config')
+const config = 
+{
+  projectId: process.env.googleCloudProjectId,
+  keyFilename: process.env.googleCloudKeyFilename,
+};
 const translate = new Translate(config);
 
 let model = 'nmt';
